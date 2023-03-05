@@ -17,14 +17,12 @@ angular.module("listaTelefonica").controller("listaTelefonicaController", functi
             $scope.operadoras = response.data;
         });
     }
-    console.log(serialGenerator.generate());
     carregarDados();
     carregarOperadoras();
 
     $scope.adicionarContato = function (dado) {
 
         dado.serial = serialGenerator.generate();
-        console.log(dado.serial)
         contatosApi.saveContatos(dado).then(function (response) {
             delete $scope.dado;
             $scope.contatoForm.$setPristine();
@@ -33,8 +31,11 @@ angular.module("listaTelefonica").controller("listaTelefonicaController", functi
     }
 
     $scope.apagarContato = function (contatos) {
-        $scope.dados = contatos.filter(contato => !contato.selecionado)
-        $scope.selecionarTodos = false;
+        const seriaisSelecionados = contatos.filter(contato => contato.selecionado).map(contatos => contatos.serial);
+        contatosApi.deleteContato(seriaisSelecionados).then(function (response) {
+            $scope.selecionarTodos = false;
+            carregarDados();
+        });
     }
 
     $scope.selecionarTodosContatos = function (contatos, selecionarTodos) {
