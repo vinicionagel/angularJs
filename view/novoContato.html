@@ -1,0 +1,32 @@
+<div class="jumbotron">
+  <div ng-messages="contatoForm.nome.$error" class="alert-danger">
+    <div ng-message="required" ng-show="contatoForm.nome.$dirty">
+      Por favor, preencha o nome
+    </div>
+    <div ng-message="minlength">
+      Por favor, o campo nome precisa ter pelo menos 10 caracteres
+    </div>
+  </div>
+  <div ng-messages="contatoForm.telefone.$error" class="alert-danger">
+    <div ng-show="contatoForm.telefone.$dirty" ng-message="required">
+      Por favor, preencha o telefone DDDDD-DDDD
+    </div>
+    <div ng-message="pattern">
+      Por favor, preencha o telefone corretamente
+    </div>
+  </div>
+  <div ng-show="contatoForm.operadora.$error.required && contatoForm.operadora.$dirty" class="alert-danger">
+    Por favor, preencha a operadora
+  </div>
+
+  <form name="contatoForm">
+    <input type="text" ng-required="true" placeholder="nome" name="nome" ng-model="dado.nome" class="form-control" ng-minlength="10">
+    <input class="form-control" type="text" ng-model="dado.data" name="data" placeholder="Data" ui-date />
+    <input type="text" placeholder="telefone" ng-required="true" ng-required="true" name="telefone" ui-telefone ng-model="dado.telefone" class="form-control" ng-pattern="/^\d{4,5}-\d{4}$/" >
+    <select ng-model="dado.operadora" ng-required="true" name="operadora" ng-options="operadora.nome + '( ' + ( operadora.preco | currency) + ' )' group by operadora.categoria for operadora in operadoras | orderBy:'nome'" class="form-control">
+      <option value="">Selecione uma operadora</option>
+    </select>
+  </form>
+
+  <button ng-click="adicionarContato(dado)" class="btn btn-primary btn-block" style="margin-top: 10px" ng-disabled="contatoForm.$invalid">Adicionar contato</button>
+</div>
