@@ -30,7 +30,7 @@
         <tr ng-repeat="dado in dados | filter: {nome:criterioBusca} | orderBy: criterioOrdernacao:direcaoOrdenacao" ng-class="{'selecionado negrito': dado.selecionado}">
             <td> <input type="checkbox" ng-model="dado.selecionado"/> </td>
             <td>{{dado.serial}}</td>
-            <td><a href="#!/detalhesContato/{{dado.serial + 'aaa'}}">{{dado.nome | name | ellipseFilter: 10}}</td>
+            <td><a href="#!/detalhesContato/{{dado.serial}}">{{dado.nome | name | ellipseFilter: 10}}</td>
             <td>{{dado.telefone}}</td>
             <td>{{dado.operadora.nome}}</td>
             <td>{{dado.data | date:'dd/MM/yyyy'}}</td>
