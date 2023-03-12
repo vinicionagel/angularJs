@@ -16,9 +16,12 @@
   <script src="config/configProvider.js"></script>
   <script src="filters/nameFilter.js"></script>
   <script src="filters/ellipseFilter.js"></script>
+  <script src="interceptors/timestampInterceptor.js"></script>
   <script src="lib/serialGenerator/serialGenerator.js"></script>
   <script src="lib/ui/uiAccordion.js"></script>
   <script src="config/configValue.js"></script>
+    <script src="config/interceptorsConfig.js"></script>
+    <script src="interceptors/errorInterceptor.js"></script>
   <script src="lib/js/angular-messages.js"></script>
   <script src="lib/js/angular-route.js"></script>
   <script src="config/configRoute.js"></script>
@@ -29,6 +32,6 @@
 <body>
 
     <div ng-view=""></div>
-    <div ng-include="'footer.html'" ></div>
+    <div ng-include="'view/footer.html'" ></div>
 </body>
 </html>
