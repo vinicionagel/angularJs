@@ -6,10 +6,21 @@ angular.module("listaTelefonica").controller("listaTelefonicaController", functi
         data : new Date().getTime()
     }
     $scope.dados = contatos.data;
+    $scope.hasContatoSelecionado = true;
+    calcularImposto($scope.dados);
+
+    function calcularImposto(dados) {
+        dados.map(contato => {
+            contato.operadora.preco *= 1.2;
+            return contato;
+        });
+        console.log(dados)
+    }
 
     let carregarDados = function () {
         contatosApi.getContatos().then(function (response) {
             $scope.dados = response.data;
+            calcularImposto($scope.dados);
         }, function (data) {
             $scope.error = "Não foi possivel carregar os dados"
         });
@@ -29,7 +40,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaController", functi
 
     $scope.possuiDadoSelecionado = function (contatos) {
         if (contatos) {
-            return !contatos.some(contato => contato.selecionado)
+            $scope.hasContatoSelecionado = contatos.some(contato => contato.selecionado);
         }
     }
     $scope.orderPor = function (nomeCampo) {
