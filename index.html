@@ -33,7 +33,7 @@
 <body>
 <div class="jumbotron" ng-show="loading">
     <h5>Carregando aguarde...</h5>
-</div>
+</div> <!-- NG SHOW CARREGA TUDO E NG-IF com NG-SOURCE NÃO CARREGA IMAGENS. -->
     <div ng-view="" ng-hide="loading"></div>
     <div ng-include="'view/footer.html'" ></div>
 </body>

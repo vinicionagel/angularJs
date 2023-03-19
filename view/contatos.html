@@ -27,7 +27,7 @@
             <th><a href="" ng-click="orderPor('data')">Data</a></th>
             <th></th>
         </tr>
-        <tr ng-repeat="dado in dados | filter: {nome:criterioBusca} | orderBy: criterioOrdernacao:direcaoOrdenacao" ng-class="{'selecionado negrito': dado.selecionado}">
+        <tr ng-repeat="dado in dados | filter: {nome:criterioBusca} | orderBy: criterioOrdernacao:direcaoOrdenacao track by dado.serial" ng-class="{'selecionado negrito': dado.selecionado}">
             <td> <input type="checkbox" ng-model="dado.selecionado" ng-click="possuiDadoSelecionado(dados)" /> </td>
             <td>{{::dado.serial}}</td>
             <td><a href="#!/detalhesContato/{{::dado.serial}}">{{::dado.nome | name | ellipseFilter: 10}}</td>
